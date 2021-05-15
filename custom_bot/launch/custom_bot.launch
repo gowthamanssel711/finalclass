@@ -1,0 +1,23 @@
+<launch>
+    <param name="robot_description" textfile="$(find custom_bot)/urdf/custom_bot.urdf" />
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    
+    </include>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+        args="-param robot_description -urdf -model custom_bot" />
+
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen"/>
+    <node pkg="rviz" type="rviz" name="rviz"/>
+    
+    
+</launch>
+
+<!-- rosmaster -->
+<!-- 1) robot description(location of urdf) -->
+<!-- 2) gazebo (open simulator) -->
+<!-- 3) robot_State_publisher -->
+<!-- 4) spawn urdf and the model -->
+<!-- 5) Enable teleop (navigation) -->
+<!-- 6) rviz(vizz) -->
